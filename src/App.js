@@ -5,6 +5,7 @@ import MoviesList from "./Components/MoviesList";
 
 const App = () => {
   const [movies, setMovies] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   // sending HTTP Request
   // function fetchMoviesHandler() {
