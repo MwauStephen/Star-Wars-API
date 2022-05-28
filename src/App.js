@@ -52,7 +52,8 @@ const App = () => {
         <button onClick={fetchMoviesHandler}>Fetch Movies</button>
       </section>
       <section>
-        <MoviesList movies={movies} />
+        {isLoading && <p>Loading Movies....</p>}
+        {!isLoading && <MoviesList movies={movies} />}
       </section>
     </Fragment>
   );
