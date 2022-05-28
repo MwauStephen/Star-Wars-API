@@ -44,6 +44,7 @@ const App = () => {
       };
     });
     setMovies(transformedData);
+    setIsLoading(false);
   };
   return (
     <Fragment>
