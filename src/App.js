@@ -6,7 +6,7 @@ import MoviesList from "./Components/MoviesList";
 const App = () => {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState(null);
 
   // sending HTTP Request
   // function fetchMoviesHandler() {
@@ -33,13 +33,15 @@ const App = () => {
 
   const fetchMoviesHandler = async () => {
     setIsLoading(true);
-    const response = await fetch("https://swapi.dev/api/films/");
-    if (!response.ok) {
-      throw new Error("Something went wrong");
-    }
-    const data = await response.json();
+    setError(null);
 
     try {
+      const response = await fetch("https://swapi.dev/api/film/");
+      if (!response.ok) {
+        throw new Error("Something went wrong");
+      }
+      const data = await response.json();
+
       const transformedData = data.results.map((movieData) => {
         return {
           id: movieData.episode_id,
@@ -61,10 +63,12 @@ const App = () => {
         <button onClick={fetchMoviesHandler}>Fetch Movies</button>
       </section>
       <section>
-        {is}
+        {!isLoading && error && <p>{error}</p>}
         {isLoading && <p>Loading Movies....</p>}
         {!isLoading && movies.length > 0 && <MoviesList movies={movies} />}
-        {!isLoading && movies.length === 0 && <p>No movies found 😪 </p>}
+        {!isLoading && movies.length === 0 && !error && (
+          <p>No movies found 😪 </p>
+        )}
       </section>
     </Fragment>
   );
