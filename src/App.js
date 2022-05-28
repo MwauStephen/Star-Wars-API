@@ -36,7 +36,7 @@ const App = () => {
     setError(null);
 
     try {
-      const response = await fetch("https://swapi.dev/api/film/");
+      const response = await fetch("https://swapi.dev/api/films/");
       if (!response.ok) {
         throw new Error("Something went wrong");
       }
@@ -57,6 +57,9 @@ const App = () => {
     }
     setIsLoading(false);
   };
+  useEffect(() => {
+    fetchMoviesHandler();
+  }, [fetchMoviesHandler]);
 
   let content = <p>No movies found</p>;
   if (movies.length > 0) {
