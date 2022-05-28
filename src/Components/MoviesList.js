@@ -8,7 +8,7 @@ const MoviesList = (props) => {
       {props.movies.map((movie) => {
         return (
           <Movie
-            id={movie.id}
+            key={movie.id}
             title={movie.title}
             openingText={movie.openingText}
             releaseDate={movie.releaseDate}
