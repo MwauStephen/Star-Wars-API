@@ -53,7 +53,7 @@ const App = () => {
       </section>
       <section>
         {isLoading && <p>Loading Movies....</p>}
-        {!isLoading && <MoviesList movies={movies} />}
+        {!isLoading && movies.length > 0 && <MoviesList movies={movies} />}
       </section>
     </Fragment>
   );
