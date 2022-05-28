@@ -16,6 +16,7 @@ const App = () => {
         return response.json();
       })
       .then((data) => {
+        console.log(data);
         const transformedData = data.results.map((movieData) => {
           return {
             id: movieData.episode_id,
