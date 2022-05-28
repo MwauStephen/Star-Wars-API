@@ -65,9 +65,20 @@ const App = () => {
     fetchMoviesHandler();
   }, [fetchMoviesHandler]);
 
-  function addMovieHandler(movie) {
-    console.log(movie);
-  }
+  const addMovieHandler = async (movie) => {
+    const response = await fetch(
+      "https://movie-app-b6d21-default-rtdb.firebaseio.com/movies.json",
+      {
+        method: "POST",
+        body: JSON.stringify(movie),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const data = await response.json();
+    console.log(data);
+  };
 
   let content = <p>No movies found</p>;
   if (movies.length > 0) {
