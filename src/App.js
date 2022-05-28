@@ -34,7 +34,9 @@ const App = () => {
   const fetchMoviesHandler = async () => {
     setIsLoading(true);
     const response = await fetch("https://swapi.dev/api/films/");
-
+    if (!response.ok) {
+      throw new Error("Something went wrong");
+    }
     const data = await response.json();
 
     try {
@@ -51,6 +53,7 @@ const App = () => {
     } catch (error) {
       setError(error.message);
     }
+    setIsLoading(false);
   };
   return (
     <Fragment>
@@ -58,6 +61,7 @@ const App = () => {
         <button onClick={fetchMoviesHandler}>Fetch Movies</button>
       </section>
       <section>
+        {is}
         {isLoading && <p>Loading Movies....</p>}
         {!isLoading && movies.length > 0 && <MoviesList movies={movies} />}
         {!isLoading && movies.length === 0 && <p>No movies found 😪 </p>}
