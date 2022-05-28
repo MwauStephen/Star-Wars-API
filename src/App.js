@@ -54,6 +54,7 @@ const App = () => {
       <section>
         {isLoading && <p>Loading Movies....</p>}
         {!isLoading && movies.length > 0 && <MoviesList movies={movies} />}
+        {!isLoading && movies.length === 0 && <p>No movies found 😪 </p> }
       </section>
     </Fragment>
   );
